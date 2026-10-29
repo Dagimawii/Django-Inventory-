@@ -1,3 +1,47 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from . models import Product
+from . form import ProductForm
 
-# Create your views here.
+def home_view(request):
+    return render(request, 'invApp/home.html')
+
+
+def product_create_view(request):
+    form =  ProductForm()
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    context = {'form' : form}
+    return render(request, 'invApp/product_form.html', context)
+
+
+def product_list_view(request):
+    products = Product.objects.all()
+    context = {'products' : products}
+    return render(request, 'invApp/product_list.html', context)
+
+
+def Product_update_view(request, product_id):
+    product = Product.objects.get(product_id = product_id)
+    form = ProductForm(instance=product)
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+
+    context = {'form' : form}
+    return render(request, 'invApp/product_form.html', context)
+
+
+def product_delete_view(request, product_id):
+    product = Product.objects.get(product_id = product_id)
+    if request.method == "POST":
+        product.delete()
+        return redirect('product_list')
+    context = {'product' : product}
+    return render(request, 'invApp/product_confirm_delete.html', context)
+            
+
