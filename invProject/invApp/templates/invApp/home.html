@@ -1,1 +1,20 @@
-This is a Test
+{% extends "invApp/layout.html" %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <div class="jumbotron tet-center">
+        <h1 class="display-4">
+            Welcome to the Inventory Managment System
+        </h1>
+        <p class="lead">
+            Manage Your Products efficiently and effectively.
+        </p>
+    </div>
+    <hr class="my-4">
+    <p>
+        use the naigation bar to add , view , update and delete products.
+    </p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg" role = "button">View Products</a>
+
+
+{% endblock %}
