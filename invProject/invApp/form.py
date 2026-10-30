@@ -13,7 +13,7 @@ class ProductForm(forms.ModelForm):
             'quantity' : 'Quantity',
             'supplier' : 'Supplier',
         }
-        widget = {
+        widgets = {
             'product_id' : forms.NumberInput(
                 attrs= {'placeholder' : 'e.g 1', 'class' : 'form-control'}),
             'name' : forms.TextInput(
@@ -22,8 +22,8 @@ class ProductForm(forms.ModelForm):
                 attrs= {'placeholder' : 'e.g S12345', 'class' : 'form-control'}),
             'price' : forms.NumberInput(
                 attrs= {'placeholder' : 'e.g 19.99', 'class' : 'form-control'}),
-            'quantity' : forms.NumberInput(
-                attrs= {'placeholder' : 'e.g 10', 'class' : 'form-control'}),
+            'Quantity' : forms.NumberInput(
+                attrs= {'class' : 'form-control'}),
             'supplier' : forms.TextInput(
                 attrs= {'placeholder' : 'e.g Abc Company', 'class' : 'form-control'}),
         }
